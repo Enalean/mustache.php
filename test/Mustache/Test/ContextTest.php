@@ -178,6 +178,27 @@ class Mustache_Test_ContextTest extends \PHPUnit\Framework\TestCase
         $this->expectException(Mustache_Exception_InvalidArgumentException::class);
         $context->findAnchoredDot('a');
     }
+
+    public function testUnknownVariableThrowsException()
+    {
+        $context = new Mustache_Context(null, true);
+        $context->push(array('a' => 1));
+        $this->expectException(Mustache_Exception_UnknownVariableException::class);
+        $this->expectExceptionMessage('Unknown variable: b');
+        $context->find('b');
+    }
+
+    public function testAnchoredDotNotationUnknownVariableThrowsException()
+    {
+        $context = new Mustache_Context(null, true);
+        $a = array(
+            'a' => array('b' => 1),
+        );
+        $context->push($a);
+        $this->expectException(Mustache_Exception_UnknownVariableException::class);
+        $this->expectExceptionMessage('Unknown variable: a.c');
+        $context->find('a.c');
+    }
 }
 
 class Mustache_Test_TestDummy
