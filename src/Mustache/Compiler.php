@@ -328,7 +328,11 @@ class Mustache_Compiler
 
     const SECTION_CALL = '
         // %s section
-        $value = $context->%s(%s);%s
+        try {
+            $value = $context->%s(%s);%s
+        } catch (Mustache_Exception_UnknownVariableException $ex) {
+            $value = "";
+        }
         $buffer .= $this->section%s($context, $indent, $value);
     ';
 
@@ -403,7 +407,11 @@ class Mustache_Compiler
 
     const INVERTED_SECTION = '
         // %s inverted section
-        $value = $context->%s(%s);%s
+        try {
+            $value = $context->%s(%s);%s
+        } catch (Mustache_Exception_UnknownVariableException $ex) {
+            $value = "";
+        }
         if (empty($value)) {
             %s
         }
