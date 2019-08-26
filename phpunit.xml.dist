@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false" colors="true" bootstrap="./test/bootstrap.php">
+	<php>
+		<ini name="error_reporting" value="24575" /> <!-- Removing deprecation notice from the reporting, remaining notice is due to the outdated version of PHPUnit  -->
+	</php>
 	<testsuite name="Mustache">
 		<directory suffix="Test.php">./test</directory>
 		<exclude>./test/Mustache/Test/FiveThree</exclude>
