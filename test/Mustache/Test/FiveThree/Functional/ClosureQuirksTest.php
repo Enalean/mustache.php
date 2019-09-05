@@ -9,15 +9,17 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group lambdas
  * @group functional
  */
-class Mustache_Test_FiveThree_Functional_ClosureQuirksTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_FiveThree_Functional_ClosureQuirksTest extends TestCase
 {
     private $mustache;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->mustache = new Mustache_Engine();
     }

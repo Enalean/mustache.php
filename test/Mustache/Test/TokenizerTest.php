@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_TokenizerTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_TokenizerTest extends TestCase
 {
     /**
      * @dataProvider getTokens
@@ -23,25 +25,21 @@ class Mustache_Test_TokenizerTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $tokenizer->scan($text, $delimiters));
     }
 
-    /**
-     * @expectedException Mustache_Exception_SyntaxException
-     */
     public function testUnevenBracesThrowExceptions()
     {
         $tokenizer = new Mustache_Tokenizer();
 
         $text = '{{{ name }}';
+        $this->expectException(Mustache_Exception_SyntaxException::class);
         $tokenizer->scan($text, null);
     }
 
-    /**
-     * @expectedException Mustache_Exception_SyntaxException
-     */
     public function testUnevenBracesWithCustomDelimiterThrowExceptions()
     {
         $tokenizer = new Mustache_Tokenizer();
 
         $text = '<%{ name %>';
+        $this->expectException(Mustache_Exception_SyntaxException::class);
         $tokenizer->scan($text, '<% %>');
     }
 

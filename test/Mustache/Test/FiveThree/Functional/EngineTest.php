@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group pragmas
  * @group functional
  */
-class Mustache_Test_FiveThree_Functional_EngineTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_FiveThree_Functional_EngineTest extends TestCase
 {
     /**
      * @dataProvider pragmaData

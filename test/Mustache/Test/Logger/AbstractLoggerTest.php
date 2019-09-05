@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Logger_AbstractLoggerTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Logger_AbstractLoggerTest extends TestCase
 {
     public function testEverything()
     {

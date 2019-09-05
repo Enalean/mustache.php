@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
-abstract class Mustache_Test_FunctionalTestCase extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class Mustache_Test_FunctionalTestCase extends TestCase
 {
     protected static $tempDir;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
         self::$tempDir = sys_get_temp_dir() . '/mustache_test';
         if (file_exists(self::$tempDir)) {

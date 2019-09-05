@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Loader_ProductionFilesystemLoaderTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Loader_ProductionFilesystemLoaderTest extends TestCase
 {
     public function testConstructor()
     {
@@ -61,22 +63,18 @@ class Mustache_Test_Loader_ProductionFilesystemLoaderTest extends PHPUnit_Framew
         $this->assertEquals('beta contents', $loader->load('beta.ms')->getSource());
     }
 
-    /**
-     * @expectedException Mustache_Exception_RuntimeException
-     */
     public function testMissingBaseDirThrowsException()
     {
+        $this->expectException(Mustache_Exception_RuntimeException::class);
         new Mustache_Loader_ProductionFilesystemLoader(dirname(__FILE__) . '/not_a_directory');
     }
 
-    /**
-     * @expectedException Mustache_Exception_UnknownTemplateException
-     */
     public function testMissingTemplateThrowsException()
     {
         $baseDir = realpath(dirname(__FILE__) . '/../../../fixtures/templates');
         $loader = new Mustache_Loader_ProductionFilesystemLoader($baseDir);
 
+        $this->expectException(Mustache_Exception_UnknownTemplateException::class);
         $loader->load('fake');
     }
 

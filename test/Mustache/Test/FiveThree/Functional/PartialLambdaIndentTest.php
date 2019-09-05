@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group lambdas
  * @group functional
  */
-class Mustache_Test_FiveThree_Functional_PartialLambdaIndentTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_FiveThree_Functional_PartialLambdaIndentTest extends TestCase
 {
     public function testLambdasInsidePartialsAreIndentedProperly()
     {

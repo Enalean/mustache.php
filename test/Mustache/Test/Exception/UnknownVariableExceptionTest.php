@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-class Mustache_Test_Exception_UnknownVariableExceptionTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Mustache_Test_Exception_UnknownVariableExceptionTest extends TestCase
 {
 
     public function testInstance()

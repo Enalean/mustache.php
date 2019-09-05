@@ -2,3 +2,4 @@
 composer.lock
 mustache.php
 vendor
+.phpunit.result.cache

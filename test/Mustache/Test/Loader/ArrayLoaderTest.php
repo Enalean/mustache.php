@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Loader_ArrayLoaderTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Loader_ArrayLoaderTest extends TestCase
 {
     public function testConstructor()
     {
@@ -41,12 +43,10 @@ class Mustache_Test_Loader_ArrayLoaderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('BAZ', $loader->load('baz'));
     }
 
-    /**
-     * @expectedException Mustache_Exception_UnknownTemplateException
-     */
     public function testMissingTemplatesThrowExceptions()
     {
         $loader = new Mustache_Loader_ArrayLoader();
+        $this->expectException(Mustache_Exception_UnknownTemplateException::class);
         $loader->load('not_a_real_template');
     }
 }

@@ -9,15 +9,17 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group lambdas
  * @group functional
  */
-class Mustache_Test_Functional_StrictVariablesTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Functional_StrictVariablesTest extends TestCase
 {
     private $mustache;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->mustache = new Mustache_Engine(array('strict_variables' => true));
     }
@@ -58,7 +60,6 @@ class Mustache_Test_Functional_StrictVariablesTest extends PHPUnit_Framework_Tes
 
     /**
      * @dataProvider unknownVariableThrowsExceptionProvider
-     * @expectedException Mustache_Exception_UnknownVariableException
      */
     public function testUnknownVariableThrowsException($template)
     {
@@ -69,6 +70,7 @@ class Mustache_Test_Functional_StrictVariablesTest extends PHPUnit_Framework_Tes
         );
 
         $tpl = $this->mustache->loadTemplate($template);
+        $this->expectException(Mustache_Exception_UnknownVariableException::class);
         $tpl->render($context);
     }
 

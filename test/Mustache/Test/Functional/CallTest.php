@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group magic_methods
  * @group functional
  */
-class Mustache_Test_Functional_CallTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Functional_CallTest extends TestCase
 {
     public function testCallEatsContext()
     {
