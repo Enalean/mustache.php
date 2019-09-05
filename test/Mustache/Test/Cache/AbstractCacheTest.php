@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-class Mustache_Test_Cache_AbstractCacheTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Mustache_Test_Cache_AbstractCacheTest extends TestCase
 {
     public function testGetSetLogger()
     {
@@ -19,13 +21,11 @@ class Mustache_Test_Cache_AbstractCacheTest extends PHPUnit_Framework_TestCase
         $this->assertSame($logger, $cache->getLogger());
     }
 
-    /**
-     * @expectedException Mustache_Exception_InvalidArgumentException
-     */
     public function testSetLoggerThrowsExceptions()
     {
         $cache  = new CacheStub();
         $logger = new StdClass();
+        $this->expectException(Mustache_Exception_InvalidArgumentException::class);
         $cache->setLogger($logger);
     }
 }

@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Source_FilesystemSourceTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Source_FilesystemSourceTest extends TestCase
 {
-    /**
-     * @expectedException RuntimeException
-     */
     public function testMissingTemplateThrowsException()
     {
         $source = new Mustache_Source_FilesystemSource(dirname(__FILE__) . '/not_a_file.mustache', array('mtime'));
+        $this->expectException(RuntimeException::class);
         $source->getKey();
     }
 }

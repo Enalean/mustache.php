@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Loader_StringLoaderTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Loader_StringLoaderTest extends TestCase
 {
     public function testLoadTemplates()
     {

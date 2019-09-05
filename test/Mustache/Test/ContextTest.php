@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_ContextTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_ContextTest extends TestCase
 {
     public function testConstructor()
     {
@@ -171,29 +173,22 @@ class Mustache_Test_ContextTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $context->findAnchoredDot('.child.name'));
     }
 
-    /**
-     * @expectedException Mustache_Exception_InvalidArgumentException
-     */
     public function testAnchoredDotNotationThrowsExceptions()
     {
         $context = new Mustache_Context();
         $context->push(array('a' => 1));
+        $this->expectException(Mustache_Exception_InvalidArgumentException::class);
         $context->findAnchoredDot('a');
     }
 
-    /**
-     * @expectedException Mustache_Exception_UnknownVariableException
-     */
     public function testUnknownVariableThrowsException()
     {
         $context = new Mustache_Context(null, true);
         $context->push(array('a' => 1));
+        $this->expectException(Mustache_Exception_UnknownVariableException::class);
         $context->find('b');
     }
 
-    /**
-     * @expectedException Mustache_Exception_UnknownVariableException
-     */
     public function testAnchoredDotNotationUnknownVariableThrowsException()
     {
         $context = new Mustache_Context(null, true);
@@ -201,6 +196,7 @@ class Mustache_Test_ContextTest extends PHPUnit_Framework_TestCase
             'a' => array('b' => 1),
         );
         $context->push($a);
+        $this->expectException(Mustache_Exception_UnknownVariableException::class);
         $context->find('a.c');
     }
 }

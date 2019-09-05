@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group examples
  * @group functional
  */
-class Mustache_Test_Functional_ExamplesTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Functional_ExamplesTest extends TestCase
 {
     /**
      * Test everything in the `examples` directory.

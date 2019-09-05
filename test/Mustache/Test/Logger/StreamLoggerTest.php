@@ -9,10 +9,12 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group unit
  */
-class Mustache_Test_Logger_StreamLoggerTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Logger_StreamLoggerTest extends TestCase
 {
     /**
      * @dataProvider acceptsStreamData
@@ -36,15 +38,13 @@ class Mustache_Test_Logger_StreamLoggerTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Mustache_Exception_LogicException
-     */
     public function testPrematurelyClosedStreamThrowsException()
     {
         $stream = tmpfile();
         $logger = new Mustache_Logger_StreamLogger($stream);
         fclose($stream);
 
+        $this->expectException(Mustache_Exception_LogicException::class);
         $logger->log(Mustache_Logger::CRITICAL, 'message');
     }
 
@@ -61,7 +61,7 @@ class Mustache_Test_Logger_StreamLoggerTest extends PHPUnit_Framework_TestCase
         $result = fread($stream, 1024);
 
         if ($shouldLog) {
-            $this->assertContains('logged', $result);
+            $this->assertStringContainsString('logged', $result);
         } else {
             $this->assertEmpty($result);
         }
@@ -189,21 +189,17 @@ class Mustache_Test_Logger_StreamLoggerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("WARNING: log this\n", $result);
     }
 
-    /**
-     * @expectedException Mustache_Exception_InvalidArgumentException
-     */
     public function testThrowsInvalidArgumentExceptionWhenSettingUnknownLevels()
     {
         $logger = new Mustache_Logger_StreamLogger(tmpfile());
+        $this->expectException(Mustache_Exception_InvalidArgumentException::class);
         $logger->setLevel('bacon');
     }
 
-    /**
-     * @expectedException Mustache_Exception_InvalidArgumentException
-     */
     public function testThrowsInvalidArgumentExceptionWhenLoggingUnknownLevels()
     {
         $logger = new Mustache_Logger_StreamLogger(tmpfile());
+        $this->expectException(Mustache_Exception_InvalidArgumentException::class);
         $logger->log('bacon', 'CODE BACON ERROR!');
     }
 }

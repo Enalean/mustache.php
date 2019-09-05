@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group functional
  * @group partials
  */
-class Mustache_Test_Functional_NestedPartialIndentTest extends PHPUnit_Framework_TestCase
+class Mustache_Test_Functional_NestedPartialIndentTest extends TestCase
 {
     /**
      * @dataProvider partialsAndStuff
