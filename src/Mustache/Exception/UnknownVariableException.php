@@ -17,10 +17,10 @@ class Mustache_Exception_UnknownVariableException extends UnexpectedValueExcepti
     protected $variableName;
 
     /**
-     * @param string    $variableName
-     * @param Exception $previous
+     * @param string     $variableName
+     * @param ?Exception $previous
      */
-    public function __construct($variableName, Exception $previous = null)
+    public function __construct($variableName, ?Exception $previous = null)
     {
         $this->variableName = $variableName;
         $message = sprintf('Unknown variable: %s', $variableName);

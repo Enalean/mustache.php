@@ -17,10 +17,10 @@ class Mustache_Exception_UnknownHelperException extends InvalidArgumentException
     protected $helperName;
 
     /**
-     * @param string    $helperName
-     * @param Exception $previous
+     * @param string     $helperName
+     * @param ?Exception $previous
      */
-    public function __construct($helperName, Exception $previous = null)
+    public function __construct($helperName, ?Exception $previous = null)
     {
         $this->helperName = $helperName;
         $message = sprintf('Unknown helper: %s', $helperName);
